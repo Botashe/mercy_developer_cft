@@ -1,0 +1,40 @@
+﻿@using System.Security.Claims;
+
+@{
+    ViewData["Title"] = "Página de Inicio";
+}
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <div class="text-center">
+        <h1 class="display-4">
+            Bienvenido
+            @User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault()
+        </h1>
+        <p>Requerimientos del laboratorio: Completado</p>
+    </div>
+
+    <h1 style="text-align:center">Recepción de Equipos en Proceso</h1>
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Fecha de Recepcion</th>
+            <th>Marca PC</th>
+            <th>Modelo PC</th>
+            <th>Estado</th>
+            <th>Nombre del Servicio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    </table>
+
+    @await Html.PartialAsync("Logo_1")
+}
+
